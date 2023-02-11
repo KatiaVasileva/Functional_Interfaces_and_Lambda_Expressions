@@ -90,11 +90,11 @@ public class Main {
         // Дан предикат condition и две функции: ifTrue и ifFalse. Напишите метод ternaryOperator, который из предиката
         // и двух функций построит новую функцию, возвращающую значение функции ifTrue, если предикат выполнен,
         // а в остальных случаях — ifFalse.
-        // Реализация: если число положительное, умножаем его на 2, если отрицательное - возводим его в квадрат.
+        // Реализация: если число положительное, умножаем его на 2, если отрицательное - возводим в квадрат.
         UnaryOperator<Integer> powerOfNumber = integer -> (int) (Math.pow(integer, 2));
         UnaryOperator<Integer> multipliedNumber = integer -> integer * 2;
-        System.out.println(ternaryOperator(positiveNumber1, multipliedNumber, powerOfNumber).apply(3));
-        System.out.println(ternaryOperator(positiveNumber1, multipliedNumber, powerOfNumber).apply(-7));
+        System.out.println(ternaryOperator(positiveNumber2, multipliedNumber, powerOfNumber).apply(3));
+        System.out.println(ternaryOperator(positiveNumber2, multipliedNumber, powerOfNumber).apply(-7));
         insertSeparator();
 
     }
@@ -103,13 +103,7 @@ public class Main {
             Predicate<Integer> condition,
             UnaryOperator<Integer> ifTrue,
             UnaryOperator<Integer> ifFalse) {
-            return number -> {
-                if (condition.test(number)) {
-                    return ifTrue.apply(number);
-                } else {
-                    return ifFalse.apply(number);
-                }
-            };
+            return number -> condition.test(number) ? ifTrue.apply(number) : ifFalse.apply(number);
         }
 
     public static void insertSeparator() {
